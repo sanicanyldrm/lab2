@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+
+
+int main(int argc, char *argv[]) {
+	
+	srand(time(NULL));
+	
+	const char* word_database[] ={"literature", "scholar","enormous", "influence", "publication", "pioneer", "telephone","orchestra", "teacher", "member", "final", "phonograph","executed", "oldest", "people"
+	, "requiring", "screwdriver","intelligent", "different", "striking"};
+	
+	int rwordNumber = rand() % 20; // this line of code choose random word in word database
+	int loopNumber = 0; //this variable for loops
+	
+	char gchar; //this variable holds the character entered by the user
+	int i; //this variable for loops
+	int counter = 0;
+	int wordsize = strlen(word_database[rwordNumber]);
+	int guessedLetter[11] = {0,0,0,0,0,0,0,0,0,0,0};
+	char wordarray[11];//this array keeps the randomly selected word
+	memcpy(wordarray,word_database[rwordNumber],11); //code that transfers a randomly selected word to another string
+	char guess[11];
+	int counter2 = 0;
+	int livesnumber = 5;
+	
+	
+	for(i = 0 ; i < wordsize ; i++){
+		printf("*");
+	}
+	printf("\n");
+	
+	
+		
+	
+	while(counter < wordsize && livesnumber > 0){//
+		
+		printf("\nPlease enter a letter :");
+	    fgets(guess,11,stdin);
+	    gchar = guess[0];
+	   
+	
+	//this loop checks whether the letter entered is in the word
+	for(loopNumber = 0; loopNumber < wordsize ; loopNumber++){  
+		if(guessedLetter[loopNumber] == 1){
+			continue;
+		}
+		
+		if(gchar == wordarray[loopNumber]){
+			guessedLetter[loopNumber] = 1;
+			counter++;
+		}
+	}
+	
+	for(i = 0 ; i < wordsize ; i++){
+		if(guessedLetter[i] == 1){
+			printf("%c",wordarray[i]);
+		}
+		else{
+			printf("*");
+		}
+	}
+	
+	for(i = 0 ; i < wordsize ; i++){
+		if(guessedLetter[i] != 1){
+			counter2++;
+		}
+	}
+	
+	if(counter2 == wordsize){
+		printf("\nThis letter is not found. Please, try another letter. You have %d rights have",livesnumber);
+		livesnumber--;
+		
+	}
+	printf("\nlivesnumber = %d",livesnumber);
+	counter2 = 0;
+	}
+	if(livesnumber == 0){
+			printf("\nGAMEOVER\n");
+		}
+	
+	return 0;
+}
