@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAX 20
+
+int main(){
+	char string[100];
+	char *pch;
+	char tmp;
+	int i,j,size;
+	char reverse[MAX];
+	printf("\nPlease enter your sentences");
+	gets(string);
+	
+	pch = strtok(string," ");
+	strcpy(reverse,pch);
+	
+	size = strlen(reverse);
+	j = size - 1;
+	
+	for(i = 0 ; i < size/2 ; i++){
+		tmp = reverse[i];
+		reverse[j] = reverse[i];
+		reverse[j] = tmp;
+		j--;
+		printf("%s",reverse);
+	}
+	
+	while(pch != NULL){
+		pch strtok(NULL," ");
+		strcpy(reverse,pch);
+		size = strlen(reverse);
+		j = size - 1;
+		
+		
+		for(i = 0; i < size/2 ; i++){
+			tmp = reverse[i];
+			reverse[i] = reverse[j];
+			reverse[j] = tmp;
+			j--;  
+		}
+		printf("%s",reverse);
+	
+	}
+	
+}
